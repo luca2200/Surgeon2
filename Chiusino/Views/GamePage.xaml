@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Chiusino.Views.GamePage"
+             Title="Gioco in Corso">
+
+    <!-- Gradient Background -->
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#E3F2FD" Offset="0.0" />
+            <GradientStop Color="#BBDEFB" Offset="0.5" />
+            <GradientStop Color="#90CAF9" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <Grid Padding="24" RowSpacing="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Score Card -->
+        <Frame Grid.Row="0"
+               BackgroundColor="White"
+               CornerRadius="20"
+               HasShadow="True"
+               Padding="0"
+               HorizontalOptions="Center"
+               VerticalOptions="Center">
+            <Frame.Shadow>
+                <Shadow Brush="#40000000"
+                        Offset="0,4"
+                        Radius="8"
+                        Opacity="0.3" />
+            </Frame.Shadow>
+
+            <Grid Padding="32,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Score Icon -->
+                <Frame Grid.Column="0"
+                       BackgroundColor="#1976D2"
+                       CornerRadius="25"
+                       WidthRequest="50"
+                       HeightRequest="50"
+                       HasShadow="False"
+                       Padding="0"
+                       VerticalOptions="Center">
+                    <Label Text="🏆"
+                           FontSize="24"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+                </Frame>
+
+                <!-- Score Display -->
+                <StackLayout Grid.Column="1" 
+                             Spacing="2" 
+                             Margin="16,0,0,0"
+                             VerticalOptions="Center">
+                    <Label Text="Punteggio" 
+                           FontSize="14"
+                           TextColor="#757575"
+                           FontAttributes="Italic" />
+                    <Label Text="0"
+                           x:Name="ScoreLabel"
+                           FontSize="24"
+                           TextColor="#1565C0"
+                           FontAttributes="Bold" />
+                </StackLayout>
+            </Grid>
+        </Frame>
+
+        <!-- Main Word Display Card -->
+        <Frame Grid.Row="1"
+               BackgroundColor="White"
+               CornerRadius="20"
+               HasShadow="True"
+               Padding="0"
+               VerticalOptions="Center">
+            <Frame.Shadow>
+                <Shadow Brush="#40000000"
+                        Offset="0,6"
+                        Radius="12"
+                        Opacity="0.3" />
+            </Frame.Shadow>
+
+            <!-- Scrollable Content -->
+            <ScrollView VerticalScrollBarVisibility="Never"
+                        HorizontalScrollBarVisibility="Never">
+                <StackLayout Spacing="16" Padding="40">
+                    <!-- Word Icon Header -->
+                    <Frame BackgroundColor="#E8F5E8"
+                           CornerRadius="30"
+                           WidthRequest="60"
+                           HeightRequest="60"
+                           HasShadow="False"
+                           Padding="0"
+                           HorizontalOptions="Center">
+                        <Label Text="💬"
+                               FontSize="28"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                    </Frame>
+
+                    <!-- Section Label -->
+                    <Label Text="Parola corrente:"
+                           FontSize="16"
+                           TextColor="#757575"
+                           HorizontalOptions="Center"
+                           Margin="0,-8,0,0" />
+
+                    <!-- Word Display -->
+                    <Frame CornerRadius="16"
+                           HasShadow="False"
+                           Padding="24"
+                           Margin="0,8">
+                        <Frame.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Color="#F3E5F5" Offset="0.0" />
+                                <GradientStop Color="#E1BEE7" Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Frame.Background>
+
+                        <Label Text="Pronto?"
+                               x:Name="RandomWordLabel"
+                               FontSize="36"
+                               FontAttributes="Bold"
+                               TextColor="#7B1FA2"
+                               HorizontalOptions="Center"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"
+                               LineBreakMode="WordWrap" />
+                    </Frame>
+
+                    <!-- Extra space for long content -->
+                    <BoxView HeightRequest="20" 
+                             BackgroundColor="Transparent" />
+                </StackLayout>
+            </ScrollView>
+        </Frame>
+
+        <!-- Next Word Button -->
+        <Frame Grid.Row="2"
+               BackgroundColor="White"
+               CornerRadius="16"
+               HasShadow="True"
+               Padding="0">
+            <Frame.Shadow>
+                <Shadow Brush="#40000000"
+                        Offset="0,3"
+                        Radius="6"
+                        Opacity="0.2" />
+            </Frame.Shadow>
+
+            <Button Text="➡️ PROSSIMA PAROLA"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    TextColor="White"
+                    CornerRadius="20"
+                    HeightRequest="60"
+                    HorizontalOptions="Fill"
+                    Margin="16"
+                    x:Name="NextWordButton"
+                    Clicked="GenerateNextWord">
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="#4CAF50" Offset="0.0" />
+                        <GradientStop Color="#45A049" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Button.Background>
+                <Button.Shadow>
+                    <Shadow Brush="#804CAF50"
+                            Offset="0,4"
+                            Radius="8"
+                            Opacity="0.4" />
+                </Button.Shadow>
+            </Button>
+        </Frame>
+
+        <!-- End Call Button -->
+        <Frame Grid.Row="3"
+               BackgroundColor="White"
+               CornerRadius="16"
+               HasShadow="True"
+               Padding="0">
+            <Frame.Shadow>
+                <Shadow Brush="#40000000"
+                        Offset="0,3"
+                        Radius="6"
+                        Opacity="0.2" />
+            </Frame.Shadow>
+
+            <StackLayout Spacing="12" Padding="16">
+                <!-- Warning Text -->
+                <Label Text="⚠️ Attenzione: Questo terminerà la sessione di gioco"
+                       FontSize="12"
+                       TextColor="#FF6D00"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"
+                       FontAttributes="Italic" />
+
+                <!-- End Call Button -->
+                <Button Text="📞 TERMINA CHIAMATA"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        TextColor="White"
+                        CornerRadius="20"
+                        HeightRequest="60"
+                        HorizontalOptions="Fill"
+                        x:Name="EndCallButton"
+                        Clicked="EndGame">
+                    <Button.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                            <GradientStop Color="#F44336" Offset="0.0" />
+                            <GradientStop Color="#D32F2F" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                    <Button.Shadow>
+                        <Shadow Brush="#80F44336"
+                                Offset="0,4"
+                                Radius="8"
+                                Opacity="0.4" />
+                    </Button.Shadow>
+                </Button>
+            </StackLayout>
+        </Frame>
+    </Grid>
+</ContentPage>

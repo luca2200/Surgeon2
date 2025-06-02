@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Chiusino.Views.ProfilePage"
+             Title="Profilo">
+
+    <!-- Gradient Background -->
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#E3F2FD" Offset="0.0" />
+            <GradientStop Color="#BBDEFB" Offset="0.5" />
+            <GradientStop Color="#90CAF9" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ScrollView>
+        <Grid Padding="24" RowSpacing="32">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- Header Section -->
+            <Frame Grid.Row="0" 
+                   BackgroundColor="White" 
+                   CornerRadius="20"
+                   HasShadow="True"
+                   Padding="0">
+                <Frame.Shadow>
+                    <Shadow Brush="#40000000"
+                            Offset="0,4"
+                            Radius="8"
+                            Opacity="0.3" />
+                </Frame.Shadow>
+
+                <Grid Padding="32,24">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Profile Avatar Icon -->
+                    <Frame Grid.Column="0"
+                           BackgroundColor="#1976D2"
+                           CornerRadius="30"
+                           WidthRequest="60"
+                           HeightRequest="60"
+                           HasShadow="False"
+                           Padding="0"
+                           VerticalOptions="Center">
+                        <Label Text="👤"
+                               FontSize="28"
+                               TextColor="White"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                    </Frame>
+
+                    <!-- Title and Subtitle -->
+                    <StackLayout Grid.Column="1" 
+                                 Spacing="4" 
+                                 Margin="20,0,0,0"
+                                 VerticalOptions="Center">
+                        <Label Text="Profilo Utente" 
+                               FontSize="26"
+                               TextColor="#1565C0"
+                               FontAttributes="Bold" />
+                        <Label Text="Visualizza e gestisci le informazioni del profilo"
+                               FontSize="14"
+                               TextColor="#757575"
+                               FontAttributes="Italic" />
+                    </StackLayout>
+                </Grid>
+            </Frame>
+
+            <!-- User Information Card -->
+            <Frame Grid.Row="1"
+                   BackgroundColor="White"
+                   CornerRadius="16"
+                   HasShadow="True"
+                   Padding="0">
+                <Frame.Shadow>
+                    <Shadow Brush="#40000000"
+                            Offset="0,2"
+                            Radius="6"
+                            Opacity="0.2" />
+                </Frame.Shadow>
+
+                <StackLayout Spacing="20" Padding="24">
+                    <!-- Section Header -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Frame Grid.Column="0"
+                               BackgroundColor="#E3F2FD"
+                               CornerRadius="12"
+                               WidthRequest="24"
+                               HeightRequest="24"
+                               HasShadow="False"
+                               Padding="0"
+                               VerticalOptions="Center">
+                            <Label Text="ℹ️"
+                                   FontSize="12"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+                        </Frame>
+
+                        <Label Grid.Column="1"
+                               Text="Informazioni Personali"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               TextColor="#1565C0"
+                               Margin="12,0,0,0"
+                               VerticalOptions="Center" />
+                    </Grid>
+
+                    <!-- User Details -->
+                    <StackLayout Spacing="16">
+                        <!-- Nome -->
+                        <Frame BackgroundColor="#F8F9FA"
+                               CornerRadius="12"
+                               HasShadow="False"
+                               Padding="16">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Column="0"
+                                       Text="Nome:"
+                                       FontSize="16"
+                                       FontAttributes="Bold"
+                                       TextColor="#424242"
+                                       VerticalOptions="Center" />
+
+                                <Label Grid.Column="1"
+                                       Text=""
+                                       FontSize="16"
+                                       TextColor="#1976D2"
+                                       FontAttributes="Bold"
+                                       Margin="20,0,0,0"
+                                       VerticalOptions="Center"
+                                       x:Name="lblName" />
+                            </Grid>
+                        </Frame>
+
+                        <!-- Descrizione -->
+                        <Frame BackgroundColor="#F8F9FA"
+                               CornerRadius="12"
+                               HasShadow="False"
+                               Padding="16">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Label Grid.Row="0"
+                                       Text="Descrizione:"
+                                       FontSize="16"
+                                       FontAttributes="Bold"
+                                       TextColor="#424242"
+                                       Margin="0,0,0,8" />
+
+                                <Label Grid.Row="1"
+                                       Text=""
+                                       FontSize="14"
+                                       TextColor="#757575"
+                                       LineBreakMode="WordWrap"
+                                       x:Name="lblDescrizione" />
+                            </Grid>
+                        </Frame>
+
+                        <!-- Data Creazione -->
+                        <Frame BackgroundColor="#F8F9FA"
+                               CornerRadius="12"
+                               HasShadow="False"
+                               Padding="16">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Column="0"
+                                       Text="Creato il:"
+                                       FontSize="16"
+                                       FontAttributes="Bold"
+                                       TextColor="#424242"
+                                       VerticalOptions="Center" />
+
+                                <Label Grid.Column="1"
+                                       Text=""
+                                       FontSize="14"
+                                       TextColor="#757575"
+                                       Margin="20,0,0,0"
+                                       VerticalOptions="Center"
+                                       x:Name="lblDataCreazione" />
+                            </Grid>
+                        </Frame>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <!-- Statistics Card -->
+            <Frame Grid.Row="2"
+                   BackgroundColor="White"
+                   CornerRadius="16"
+                   HasShadow="True"
+                   Padding="0">
+                <Frame.Shadow>
+                    <Shadow Brush="#40000000"
+                            Offset="0,2"
+                            Radius="6"
+                            Opacity="0.2" />
+                </Frame.Shadow>
+
+                <StackLayout Spacing="20" Padding="24">
+                    <!-- Section Header -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Frame Grid.Column="0"
+                               BackgroundColor="#FFF3E0"
+                               CornerRadius="12"
+                               WidthRequest="24"
+                               HeightRequest="24"
+                               HasShadow="False"
+                               Padding="0"
+                               VerticalOptions="Center">
+                            <Label Text="🏆"
+                                   FontSize="12"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+                        </Frame>
+
+                        <Label Grid.Column="1"
+                               Text="Statistiche"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               TextColor="#1565C0"
+                               Margin="12,0,0,0"
+                               VerticalOptions="Center" />
+                    </Grid>
+
+                    <!-- Points Display -->
+                    <Frame CornerRadius="16"
+                           HasShadow="False"
+                           Padding="0">
+                        <Frame.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Color="#FFE0B2" Offset="0.0" />
+                                <GradientStop Color="#FFF3E0" Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Frame.Background>
+
+                        <Grid Padding="20">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+
+                            <Frame Grid.Column="0"
+                                   BackgroundColor="#FF9800"
+                                   CornerRadius="20"
+                                   WidthRequest="40"
+                                   HeightRequest="40"
+                                   HasShadow="False"
+                                   Padding="0"
+                                   VerticalOptions="Center">
+                                <Label Text="⭐"
+                                       FontSize="20"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+                            </Frame>
+
+                            <StackLayout Grid.Column="1"
+                                         Spacing="4"
+                                         Margin="16,0,0,0"
+                                         VerticalOptions="Center">
+                                <Label Text="Punti Totali"
+                                       FontSize="14"
+                                       TextColor="#757575" />
+                                <Label Text=""
+                                       FontSize="24"
+                                       FontAttributes="Bold"
+                                       TextColor="#F57C00"
+                                       x:Name="lblPoints" />
+                            </StackLayout>
+
+                            <Label Grid.Column="2"
+                                   Text="pts"
+                                   FontSize="16"
+                                   TextColor="#757575"
+                                   VerticalOptions="End"
+                                   Margin="0,0,0,4" />
+                        </Grid>
+                    </Frame>
+                </StackLayout>
+            </Frame>
+
+            <!-- Action Button -->
+            <Frame Grid.Row="3"
+                   BackgroundColor="White"
+                   CornerRadius="16"
+                   HasShadow="True"
+                   Padding="0">
+                <Frame.Shadow>
+                    <Shadow Brush="#40000000"
+                            Offset="0,2"
+                            Radius="6"
+                            Opacity="0.2" />
+                </Frame.Shadow>
+
+                <StackLayout Spacing="16" Padding="24">
+                    <!-- Section Header -->
+                    <Label Text="Azioni Profilo"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#1565C0"
+                           HorizontalOptions="Center" />
+
+                    <!-- View Roles Button -->
+                    <Button Text="VISUALIZZA RUOLI"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            TextColor="White"
+                            CornerRadius="25"
+                            HeightRequest="56"
+                            HorizontalOptions="Fill"
+                            x:Name="ViewRolesButton"
+                            Clicked="ViewRolesButton_Clicked">
+                        <Button.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Color="#1976D2" Offset="0.0" />
+                                <GradientStop Color="#1565C0" Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+                        <Button.Shadow>
+                            <Shadow Brush="#801976D2"
+                                    Offset="0,4"
+                                    Radius="8"
+                                    Opacity="0.4" />
+                        </Button.Shadow>
+                    </Button>
+
+                    <!-- Help Text -->
+                    <Label Text="Visualizza i ruoli assegnati e le competenze acquisite"
+                           FontSize="12"
+                           TextColor="#9E9E9E"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center"
+                           Margin="16,8,16,0" />
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </ScrollView>
+</ContentPage>

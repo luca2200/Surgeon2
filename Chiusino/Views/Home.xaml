@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Chiusino.Views.Home"
+             Title="Home">
+
+    <!-- Gradient Background -->
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#E3F2FD" Offset="0.0" />
+            <GradientStop Color="#BBDEFB" Offset="0.5" />
+            <GradientStop Color="#90CAF9" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ScrollView>
+        <Grid Padding="24" RowSpacing="32">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- Header Section with Logo -->
+            <Frame Grid.Row="0" 
+                   BackgroundColor="White" 
+                   CornerRadius="20"
+                   HasShadow="True"
+                   Padding="0">
+                <Frame.Shadow>
+                    <Shadow Brush="#40000000"
+                            Offset="0,4"
+                            Radius="8"
+                            Opacity="0.3" />
+                </Frame.Shadow>
+
+                <Grid Padding="32,24">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Logo Icon -->
+                    <Frame Grid.Column="0"
+                           BackgroundColor="#1976D2"
+                           CornerRadius="25"
+                           WidthRequest="50"
+                           HeightRequest="50"
+                           HasShadow="False"
+                           Padding="0"
+                           VerticalOptions="Center">
+                        <Label Text="S"
+                               FontSize="24"
+                               FontAttributes="Bold"
+                               TextColor="White"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                    </Frame>
+
+                    <!-- App Title and Subtitle -->
+                    <StackLayout Grid.Column="1" 
+                                 Spacing="4" 
+                                 Margin="16,0,0,0"
+                                 VerticalOptions="Center">
+                        <Label Text="Surgeonn" 
+                               FontSize="28"
+                               TextColor="#1565C0"
+                               FontAttributes="Bold" />
+                        <Label Text="Professional Training Platform"
+                               FontSize="14"
+                               TextColor="#757575"
+                               FontAttributes="Italic" />
+                    </StackLayout>
+                </Grid>
+            </Frame>
+
+            <!-- User Selection Card -->
+            <Frame Grid.Row="1"
+                   BackgroundColor="White"
+                   CornerRadius="16"
+                   HasShadow="True"
+                   Padding="0">
+                <Frame.Shadow>
+                    <Shadow Brush="#40000000"
+                            Offset="0,2"
+                            Radius="6"
+                            Opacity="0.2" />
+                </Frame.Shadow>
+
+                <StackLayout Spacing="16" Padding="24">
+                    <!-- Section Header -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Frame Grid.Column="0"
+                               BackgroundColor="#E3F2FD"
+                               CornerRadius="12"
+                               WidthRequest="24"
+                               HeightRequest="24"
+                               HasShadow="False"
+                               Padding="0"
+                               VerticalOptions="Center">
+                            <Label Text="👤"
+                                   FontSize="12"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+                        </Frame>
+
+                        <Label Grid.Column="1"
+                               Text="Seleziona Utente"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               TextColor="#1565C0"
+                               Margin="12,0,0,0"
+                               VerticalOptions="Center" />
+                    </Grid>
+
+                    <!-- User List -->
+                    <Frame BackgroundColor="#F8F9FA"
+                           CornerRadius="12"
+                           HasShadow="False"
+                           Padding="8">
+                        <ListView x:Name="UsersListView"
+                                  SelectionMode="Single"
+                                  BackgroundColor="Transparent"
+                                  SeparatorColor="#E0E0E0"
+                                  HeightRequest="120"
+                                  RowHeight="40">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid Padding="16,8">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Ellipse Grid.Column="0"
+                                                     Fill="#1976D2"
+                                                     WidthRequest="8"
+                                                     HeightRequest="8"
+                                                     VerticalOptions="Center" />
+
+                                            <Label Grid.Column="1"
+                                                   Text="{Binding .}"
+                                                   TextColor="#424242"
+                                                   FontSize="16"
+                                                   Margin="12,0,0,0"
+                                                   VerticalOptions="Center" />
+
+                                            <Label Grid.Column="2"
+                                                   Text="›"
+                                                   TextColor="#9E9E9E"
+                                                   FontSize="18"
+                                                   VerticalOptions="Center" />
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Frame>
+                </StackLayout>
+            </Frame>
+
+            <!-- Main Action Button -->
+            <Button Grid.Row="2"
+                    Text="INIZIA SESSIONE"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    TextColor="White"
+                    CornerRadius="25"
+                    HeightRequest="56"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Center"
+                    x:Name="PlayButton"
+                    Clicked="PlayButton_Clicked">
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                        <GradientStop Color="#1976D2" Offset="0.0" />
+                        <GradientStop Color="#1565C0" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Button.Background>
+                <Button.Shadow>
+                    <Shadow Brush="#801976D2"
+                            Offset="0,4"
+                            Radius="8"
+                            Opacity="0.4" />
+                </Button.Shadow>
+            </Button>
+
+            <!-- Bottom Actions Card -->
+            <Frame Grid.Row="3"
+                   BackgroundColor="White"
+                   CornerRadius="16"
+                   HasShadow="True"
+                   Padding="0">
+                <Frame.Shadow>
+                    <Shadow Brush="#40000000"
+                            Offset="0,2"
+                            Radius="6"
+                            Opacity="0.2" />
+                </Frame.Shadow>
+
+                <StackLayout Spacing="16" Padding="24">
+                    <!-- Section Header -->
+                    <Label Text="Gestione Account"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#1565C0"
+                           HorizontalOptions="Center" />
+
+                    <!-- Action Buttons Grid -->
+                    <Grid ColumnSpacing="16">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Create User Button -->
+                        <Frame Grid.Column="0"
+                               BackgroundColor="#E3F2FD"
+                               CornerRadius="12"
+                               HasShadow="False"
+                               Padding="0">
+                            <Button Text="+ Nuovo Utente"
+                                    BackgroundColor="Transparent"
+                                    TextColor="#1976D2"
+                                    FontSize="14"
+                                    FontAttributes="Bold"
+                                    HeightRequest="48"
+                                    x:Name="CreateUserButton"
+                                    Clicked="CreateUserButton_Clicked" />
+                        </Frame>
+
+                        <!-- Profile Button -->
+                        <Frame Grid.Column="1"
+                               BackgroundColor="#E8F5E8"
+                               CornerRadius="12"
+                               HasShadow="False"
+                               Padding="0">
+                            <Button Text="⚙️ Profilo"
+                                    BackgroundColor="Transparent"
+                                    TextColor="#2E7D32"
+                                    FontSize="14"
+                                    FontAttributes="Bold"
+                                    HeightRequest="48"
+                                    x:Name="ProfileButton"
+                                    Clicked="ProfileButton_Clicked" />
+                        </Frame>
+                    </Grid>
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Chiusino.Views.PreGamePage"
+             Title="Preparazione Gioco">
+
+    <!-- Gradient Background -->
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#E3F2FD" Offset="0.0" />
+            <GradientStop Color="#BBDEFB" Offset="0.5" />
+            <GradientStop Color="#90CAF9" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ScrollView>
+        <Grid Padding="24" RowSpacing="32">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- Header Section -->
+            <Frame Grid.Row="0" 
+                   BackgroundColor="White" 
+                   CornerRadius="20"
+                   HasShadow="True"
+                   Padding="0">
+                <Frame.Shadow>
+                    <Shadow Brush="#40000000"
+                            Offset="0,4"
+                            Radius="8"
+                            Opacity="0.3" />
+                </Frame.Shadow>
+
+                <Grid Padding="32,24">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Game Icon -->
+                    <Frame Grid.Column="0"
+                           BackgroundColor="#1976D2"
+                           CornerRadius="30"
+                           WidthRequest="60"
+                           HeightRequest="60"
+                           HasShadow="False"
+                           Padding="0"
+                           VerticalOptions="Center">
+                        <Label Text="🎮"
+                               FontSize="28"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                    </Frame>
+
+                    <!-- Title and Subtitle -->
+                    <StackLayout Grid.Column="1" 
+                                 Spacing="4" 
+                                 Margin="20,0,0,0"
+                                 VerticalOptions="Center">
+                        <Label Text="Pre-Game Setup" 
+                               FontSize="26"
+                               TextColor="#1565C0"
+                               FontAttributes="Bold" />
+                        <Label Text="Prepara tutto per iniziare la sessione di gioco"
+                               FontSize="14"
+                               TextColor="#757575"
+                               FontAttributes="Italic" />
+                    </StackLayout>
+                </Grid>
+            </Frame>
+
+            <!-- Phone Number Generation Card -->
+            <Frame Grid.Row="1"
+                   BackgroundColor="White"
+                   CornerRadius="16"
+                   HasShadow="True"
+                   Padding="0">
+                <Frame.Shadow>
+                    <Shadow Brush="#40000000"
+                            Offset="0,2"
+                            Radius="6"
+                            Opacity="0.2" />
+                </Frame.Shadow>
+
+                <StackLayout Spacing="20" Padding="24">
+                    <!-- Section Header -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Frame Grid.Column="0"
+                               BackgroundColor="#E8F5E8"
+                               CornerRadius="12"
+                               WidthRequest="24"
+                               HeightRequest="24"
+                               HasShadow="False"
+                               Padding="0"
+                               VerticalOptions="Center">
+                            <Label Text="📱"
+                                   FontSize="12"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+                        </Frame>
+
+                        <Label Grid.Column="1"
+                               Text="Numero Telefono"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               TextColor="#1565C0"
+                               Margin="12,0,0,0"
+                               VerticalOptions="Center" />
+                    </Grid>
+
+                    <!-- Generate Button -->
+                    <Button Text="GENERA NUMERO TELEFONO"
+                            FontSize="16"
+                            FontAttributes="Bold"
+                            TextColor="White"
+                            CornerRadius="20"
+                            HeightRequest="50"
+                            HorizontalOptions="Fill"
+                            x:Name="GeneratePhoneNumberBtn"
+                            Clicked="GeneratePhoneNumber">
+                        <Button.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Color="#4CAF50" Offset="0.0" />
+                                <GradientStop Color="#45A049" Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+                        <Button.Shadow>
+                            <Shadow Brush="#804CAF50"
+                                    Offset="0,3"
+                                    Radius="6"
+                                    Opacity="0.4" />
+                        </Button.Shadow>
+                    </Button>
+
+                    <!-- Phone Number Display -->
+                    <Frame BackgroundColor="#F1F8E9"
+                           CornerRadius="12"
+                           HasShadow="False"
+                           Padding="20">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Frame Grid.Column="0"
+                                   BackgroundColor="#4CAF50"
+                                   CornerRadius="15"
+                                   WidthRequest="30"
+                                   HeightRequest="30"
+                                   HasShadow="False"
+                                   Padding="0"
+                                   VerticalOptions="Center">
+                                <Label Text="📞"
+                                       FontSize="14"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+                            </Frame>
+
+                            <Label Grid.Column="1"
+                                   Text="Nessun numero generato"
+                                   x:Name="PhoneNumberLabel"
+                                   FontSize="18"
+                                   FontAttributes="Bold"
+                                   TextColor="#2E7D32"
+                                   Margin="12,0,0,0"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center" />
+                        </Grid>
+                    </Frame>
+
+                    <!-- Copy Button -->
+                    <Frame BackgroundColor="#E3F2FD"
+                           CornerRadius="12"
+                           HasShadow="False"
+                           Padding="0">
+                        <Button Text="📋 COPIA NUMERO"
+                                BackgroundColor="Transparent"
+                                TextColor="#1976D2"
+                                FontSize="14"
+                                FontAttributes="Bold"
+                                HeightRequest="40"
+                                x:Name="CopyPhoneNumberBtn"
+                                IsEnabled="True"
+                                Clicked="CopyPhoneNumberBtn_Clicked" />
+                    </Frame>
+                </StackLayout>
+            </Frame>
+
+            <!-- Role Assignment Card -->
+            <Frame Grid.Row="2"
+                   BackgroundColor="White"
+                   CornerRadius="16"
+                   HasShadow="True"
+                   Padding="0">
+                <Frame.Shadow>
+                    <Shadow Brush="#40000000"
+                            Offset="0,2"
+                            Radius="6"
+                            Opacity="0.2" />
+                </Frame.Shadow>
+
+                <StackLayout Spacing="20" Padding="24">
+                    <!-- Section Header -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Frame Grid.Column="0"
+                               BackgroundColor="#FFF3E0"
+                               CornerRadius="12"
+                               WidthRequest="24"
+                               HeightRequest="24"
+                               HasShadow="False"
+                               Padding="0"
+                               VerticalOptions="Center">
+                            <Label Text="🎭"
+                                   FontSize="12"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+                        </Frame>
+
+                        <Label Grid.Column="1"
+                               Text="Ruolo Assegnato"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               TextColor="#1565C0"
+                               Margin="12,0,0,0"
+                               VerticalOptions="Center" />
+                    </Grid>
+
+                    <!-- Role Display -->
+                    <Frame CornerRadius="16"
+                           HasShadow="False"
+                           Padding="0">
+                        <Frame.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Color="#FFE0B2" Offset="0.0" />
+                                <GradientStop Color="#FFF3E0" Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Frame.Background>
+
+                        <StackLayout Spacing="8" Padding="24">
+                            <Label Text="Il tuo ruolo:"
+                                   FontSize="14"
+                                   TextColor="#757575"
+                                   HorizontalOptions="Center" />
+
+                            <Label Text="Nessun ruolo estratto"
+                                   x:Name="JobLabel"
+                                   FontSize="22"
+                                   FontAttributes="Bold"
+                                   TextColor="#F57C00"
+                                   HorizontalOptions="Center"
+                                   HorizontalTextAlignment="Center" />
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </Frame>
+
+            <!-- Game Instructions Card -->
+            <Frame Grid.Row="3"
+                   BackgroundColor="White"
+                   CornerRadius="16"
+                   HasShadow="True"
+                   Padding="0">
+                <Frame.Shadow>
+                    <Shadow Brush="#40000000"
+                            Offset="0,2"
+                            Radius="6"
+                            Opacity="0.2" />
+                </Frame.Shadow>
+
+                <StackLayout Spacing="16" Padding="24">
+                    <!-- Section Header -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Frame Grid.Column="0"
+                               BackgroundColor="#E8F5E8"
+                               CornerRadius="12"
+                               WidthRequest="24"
+                               HeightRequest="24"
+                               HasShadow="False"
+                               Padding="0"
+                               VerticalOptions="Center">
+                            <Label Text="💡"
+                                   FontSize="12"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+                        </Frame>
+
+                        <Label Grid.Column="1"
+                               Text="Istruzioni"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               TextColor="#1565C0"
+                               Margin="12,0,0,0"
+                               VerticalOptions="Center" />
+                    </Grid>
+
+                    <!-- Instructions -->
+                    <Frame BackgroundColor="#F0F4FF"
+                           CornerRadius="12"
+                           HasShadow="False"
+                           Padding="16">
+                        <StackLayout Spacing="8">
+                            <Label Text="• Genera un numero di telefono per la sessione"
+                                   FontSize="14"
+                                   TextColor="#424242" />
+                            <Label Text="• Visualizza il ruolo assegnato automaticamente"
+                                   FontSize="14"
+                                   TextColor="#424242" />
+                            <Label Text="• Avvia il generatore di parole quando sei pronto"
+                                   FontSize="14"
+                                   TextColor="#424242" />
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </Frame>
+
+            <!-- Start Game Card -->
+            <Frame Grid.Row="4"
+                   BackgroundColor="White"
+                   CornerRadius="16"
+                   HasShadow="True"
+                   Padding="0">
+                <Frame.Shadow>
+                    <Shadow Brush="#40000000"
+                            Offset="0,2"
+                            Radius="6"
+                            Opacity="0.2" />
+                </Frame.Shadow>
+
+                <StackLayout Spacing="16" Padding="24">
+                    <!-- Section Header -->
+                    <Label Text="Inizia la Sessione"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="#1565C0"
+                           HorizontalOptions="Center" />
+
+                    <!-- Start Game Button -->
+                    <Button Text="🚀 INIZIA CHIAMATA"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            TextColor="White"
+                            CornerRadius="25"
+                            HeightRequest="60"
+                            HorizontalOptions="Fill"
+                            x:Name="StartGameBtn"
+                            IsEnabled="True"
+                            Clicked="StartWordGame">
+                        <Button.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Color="#1976D2" Offset="0.0" />
+                                <GradientStop Color="#1565C0" Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+                        <Button.Shadow>
+                            <Shadow Brush="#801976D2"
+                                    Offset="0,4"
+                                    Radius="8"
+                                    Opacity="0.4" />
+                        </Button.Shadow>
+                    </Button>
+
+                    <!-- Help Text -->
+                    <Label Text="Assicurati di aver generato il numero di telefono prima di iniziare"
+                           FontSize="12"
+                           TextColor="#9E9E9E"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center"
+                           Margin="16,8,16,0" />
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </ScrollView>
+</ContentPage>

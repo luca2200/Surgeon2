@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Chiusino.Views.AddProfilePage"
+             Title="Crea Profilo">
+
+    <!-- Gradient Background -->
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#E3F2FD" Offset="0.0" />
+            <GradientStop Color="#BBDEFB" Offset="0.5" />
+            <GradientStop Color="#90CAF9" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ScrollView>
+        <Grid Padding="24" RowSpacing="32">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- Header Section -->
+            <Frame Grid.Row="0" 
+                   BackgroundColor="White" 
+                   CornerRadius="20"
+                   HasShadow="True"
+                   Padding="0">
+                <Frame.Shadow>
+                    <Shadow Brush="#40000000"
+                            Offset="0,4"
+                            Radius="8"
+                            Opacity="0.3" />
+                </Frame.Shadow>
+
+                <Grid Padding="32,24">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Icon -->
+                    <Frame Grid.Column="0"
+                           BackgroundColor="#1976D2"
+                           CornerRadius="25"
+                           WidthRequest="50"
+                           HeightRequest="50"
+                           HasShadow="False"
+                           Padding="0"
+                           VerticalOptions="Center">
+                        <Label Text="+"
+                               FontSize="24"
+                               FontAttributes="Bold"
+                               TextColor="White"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />
+                    </Frame>
+
+                    <!-- Title and Subtitle -->
+                    <StackLayout Grid.Column="1" 
+                                 Spacing="4" 
+                                 Margin="16,0,0,0"
+                                 VerticalOptions="Center">
+                        <Label Text="Crea Nuovo Profilo" 
+                               FontSize="26"
+                               TextColor="#1565C0"
+                               FontAttributes="Bold" />
+                        <Label Text="Inserisci i dettagli per creare un nuovo profilo utente"
+                               FontSize="14"
+                               TextColor="#757575"
+                               FontAttributes="Italic" />
+                    </StackLayout>
+                </Grid>
+            </Frame>
+
+            <!-- Form Card -->
+            <Frame Grid.Row="1"
+                   BackgroundColor="White"
+                   CornerRadius="16"
+                   HasShadow="True"
+                   Padding="0">
+                <Frame.Shadow>
+                    <Shadow Brush="#40000000"
+                            Offset="0,2"
+                            Radius="6"
+                            Opacity="0.2" />
+                </Frame.Shadow>
+
+                <StackLayout Spacing="24" Padding="24">
+                    <!-- Form Header -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Frame Grid.Column="0"
+                               BackgroundColor="#E3F2FD"
+                               CornerRadius="12"
+                               WidthRequest="24"
+                               HeightRequest="24"
+                               HasShadow="False"
+                               Padding="0"
+                               VerticalOptions="Center">
+                            <Label Text="📝"
+                                   FontSize="12"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+                        </Frame>
+
+                        <Label Grid.Column="1"
+                               Text="Informazioni Profilo"
+                               FontSize="18"
+                               FontAttributes="Bold"
+                               TextColor="#1565C0"
+                               Margin="12,0,0,0"
+                               VerticalOptions="Center" />
+                    </Grid>
+
+                    <!-- Nome Profilo Section -->
+                    <StackLayout Spacing="8">
+                        <Label Text="Nome Profilo *"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               TextColor="#424242" />
+
+                        <Frame BackgroundColor="#F8F9FA"
+                               CornerRadius="12"
+                               HasShadow="False"
+                               Padding="4">
+                            <Entry Placeholder="Inserisci il nome del profilo"
+                                   PlaceholderColor="#9E9E9E"
+                                   TextColor="#424242"
+                                   FontSize="16"
+                                   BackgroundColor="Transparent"
+                                   x:Name="ProfileNameEntry">
+                            </Entry>
+                        </Frame>
+
+                        <Label Text="Il nome è obbligatorio e deve essere univoco"
+                               FontSize="12"
+                               TextColor="#757575"
+                               Margin="8,0,0,0" />
+                    </StackLayout>
+
+                    <!-- Descrizione Section -->
+                    <StackLayout Spacing="8">
+                        <Label Text="Descrizione (Opzionale)"
+                               FontSize="16"
+                               FontAttributes="Bold"
+                               TextColor="#424242" />
+
+                        <Frame BackgroundColor="#F8F9FA"
+                               CornerRadius="12"
+                               HasShadow="False"
+                               Padding="4">
+                            <Editor Placeholder="Aggiungi una descrizione del profilo..."
+                                    PlaceholderColor="#9E9E9E"
+                                    TextColor="#424242"
+                                    FontSize="16"
+                                    BackgroundColor="Transparent"
+                                    AutoSize="TextChanges"
+                                    HeightRequest="100"
+                                    x:Name="DescriptionEditor" />
+                        </Frame>
+
+                        <Label Text="Descrizione facoltativa per identificare meglio il profilo"
+                               FontSize="12"
+                               TextColor="#757575"
+                               Margin="8,0,0,0" />
+                    </StackLayout>
+
+                    <!-- Required Field Notice -->
+                    <Frame BackgroundColor="#FFF3E0"
+                           CornerRadius="8"
+                           HasShadow="False"
+                           Padding="12">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0"
+                                   Text="ℹ️"
+                                   FontSize="16"
+                                   VerticalOptions="Start"
+                                   Margin="0,2,0,0" />
+
+                            <Label Grid.Column="1"
+                                   Text="I campi contrassegnati con * sono obbligatori"
+                                   FontSize="12"
+                                   TextColor="#F57C00"
+                                   Margin="8,0,0,0"
+                                   VerticalOptions="Center" />
+                        </Grid>
+                    </Frame>
+                </StackLayout>
+            </Frame>
+
+            <!-- Action Buttons Card -->
+            <Frame Grid.Row="2"
+                   BackgroundColor="White"
+                   CornerRadius="16"
+                   HasShadow="True"
+                   Padding="0">
+                <Frame.Shadow>
+                    <Shadow Brush="#40000000"
+                            Offset="0,2"
+                            Radius="6"
+                            Opacity="0.2" />
+                </Frame.Shadow>
+
+                <StackLayout Spacing="16" Padding="24">
+                    <!-- Primary Action Button -->
+                    <Button Text="CREA PROFILO"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            TextColor="White"
+                            CornerRadius="25"
+                            HeightRequest="56"
+                            HorizontalOptions="Fill"
+                            x:Name="SaveButton">
+                        <Button.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                <GradientStop Color="#1976D2" Offset="0.0" />
+                                <GradientStop Color="#1565C0" Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Button.Background>
+                        <Button.Shadow>
+                            <Shadow Brush="#801976D2"
+                                    Offset="0,4"
+                                    Radius="8"
+                                    Opacity="0.4" />
+                        </Button.Shadow>
+                    </Button>
+
+                    <!-- Secondary Action Button -->
+                    <Frame BackgroundColor="#F5F5F5"
+                           CornerRadius="20"
+                           HasShadow="False"
+                           Padding="0">
+                        <Button Text="Annulla"
+                                BackgroundColor="Transparent"
+                                TextColor="#757575"
+                                FontSize="16"
+                                FontAttributes="Bold"
+                                HeightRequest="48"
+                                HorizontalOptions="Fill"
+                                x:Name="CancelButton" />
+                    </Frame>
+
+                    <!-- Help Text -->
+                    <Label Text="Dopo aver creato il profilo, potrai modificarlo dalla sezione Gestisci Profilo"
+                           FontSize="12"
+                           TextColor="#9E9E9E"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center"
+                           Margin="16,8,16,0" />
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </ScrollView>
+</ContentPage>
